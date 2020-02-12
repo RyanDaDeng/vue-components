@@ -2,6 +2,9 @@
     <b-card no-body class="shadow-lg p-3 mb-5 bg-white rounded" :id="id">
         <b-card-title>
             <slot name="title"></slot>
+            <span style="font-size: 2em; color: Dodgerblue;cursor:pointer;" class="mr-1 float-right"
+                  @click="openLink('https://github.com/RyanDaDeng/vue-components')"><i
+                    class="fab fa-github"></i></span>
         </b-card-title>
 
         <b-card>
@@ -44,7 +47,13 @@
             return {}
         },
         computed: {},
-        methods: {},
+        methods: {
+            openLink(url) {
+                if (url.startsWith("http")) {
+                    window.open(url, '_blank');
+                }
+            }
+        },
         created() {
         },
         mounted() {

@@ -1,5 +1,10 @@
 # vue-collection
 
+
+## Components
+
+Located at `/src/components'
+
 ## Project setup
 ```
 npm install
