@@ -3,7 +3,7 @@
 
         <div>
             <!-- As a heading -->
-            <b-navbar variant="light" type="light" sticky style="position: fixed;" class="mb-2">
+            <b-navbar variant="light" type="light" sticky style="position: fixed;">
                 <b-navbar-brand tag="h1" class="mb-0">Ryan's Workspace</b-navbar-brand>
 
 
@@ -31,7 +31,8 @@
 
             <b-col cols="2" class="mt-5">
                 <b-nav vertical class="w-25 float-left" style="position:fixed;">
-                    <b-nav-item class="hvr-underline-from-center" :href="!component.isLink ? component.url:'#'" @click="openLink(component.url)"
+                    <b-nav-item class="hvr-underline-from-center" :href="!component.isLink ? component.url:'#'"
+                                @click="openLink(component.url)"
                                 :active="component.active"
                                 v-for="(component,key) in components" :key="key">
                         {{component.name}}
@@ -41,13 +42,13 @@
             <b-container style="margin-top: 80px;">
                 <b-row>
                     <b-col offset="2" cols="10">
-                        <b-container>
-                            <demo-card :id="'about_me'">
-                                <template v-slot:title>
-                                    About Me
-                                </template>
 
-                                <template v-slot:component>
+                        <demo-card :id="'about_me'">
+                            <template v-slot:title>
+                                About Me
+                            </template>
+
+                            <template v-slot:component>
                                        <span style="font-size: 2em; color: Dodgerblue;cursor:pointer;" class="mr-1">
                                            <b-img width='32'
                                                   style="margin-bottom:9px;"
@@ -55,83 +56,86 @@
                                                   @click="openLink('https://slackit.io')"
                                                   src="https://slackit.io/img/slackit-logo.png"></b-img></span>
 
-                                    <span style="font-size: 2em; color: Dodgerblue;cursor:pointer;" class="mr-1"
-                                          @click="openLink('https://github.com/RyanDaDeng')"><i
-                                            class="fab fa-github"></i></span>
+                                <span style="font-size: 2em; color: Dodgerblue;cursor:pointer;" class="mr-1"
+                                      @click="openLink('https://github.com/RyanDaDeng')"><i
+                                        class="fab fa-github"></i></span>
 
-                                    <span style="font-size: 2em; color: Mediumslateblue;cursor:pointer;"
-                                          @click="openLink('https://www.linkedin.com/in/ryandeng')"><i
-                                            class="fab fa-linkedin"></i></span>
+                                <span style="font-size: 2em; color: Mediumslateblue;cursor:pointer;"
+                                      @click="openLink('https://www.linkedin.com/in/ryandeng')"><i
+                                        class="fab fa-linkedin"></i></span>
 
-                                </template>
+                            </template>
 
-                            </demo-card>
+                        </demo-card>
 
-                            <demo-card :id="'recurrence_editor'">
-                                <template v-slot:title>
-                                    Recurrence Editor
-                                </template>
+                        <demo-card :id="'recurrence_editor'">
+                            <template v-slot:title>
+                                Recurrence Editor
+                            </template>
 
-                                <template v-slot:component>
-                                    <recurrence-editor v-model="recurrence"></recurrence-editor>
-                                </template>
+                            <template v-slot:component>
+                                <recurrence-editor v-model="recurrence"></recurrence-editor>
+                            </template>
 
-                                <template v-slot:model>
-                                    <pre>{{ recurrence | pretty }}</pre>
-                                </template>
+                            <template v-slot:model>
+                                <pre>{{ recurrence | pretty }}</pre>
+                            </template>
 
-                            </demo-card>
-
-
-                            <demo-card :id="'question_maker'">
-
-                                <template v-slot:title>
-                                    Question Maker
-                                </template>
-
-                                <template v-slot:component>
-                                    <question-maker :questions="questions" :limit="5"></question-maker>
-                                </template>
-
-                                <template v-slot:model>
-                                    <pre>{{ questions | pretty }}</pre>
-                                </template>
-                            </demo-card>
+                        </demo-card>
 
 
-                            <demo-card :id="'slack_button'">
-                                <template v-slot:title>
-                                    Slack Button
-                                </template>
+                        <demo-card :id="'question_maker'">
 
-                                <template v-slot:component>
-                                    <slack-button installUrl="#" button-name="Add to Slack"></slack-button>
-                                    <hr>
-                                    <slack-button installUrl="#" button-name="Sign in with Slack"></slack-button>
-                                </template>
+                            <template v-slot:title>
+                                Question Maker
+                            </template>
+
+                            <template v-slot:component>
+                                <question-maker :questions="questions" :limit="5"></question-maker>
+                            </template>
+
+                            <template v-slot:model>
+                                <pre>{{ questions | pretty }}</pre>
+                            </template>
+                        </demo-card>
 
 
-                            </demo-card>
+                        <demo-card :id="'slack_button'">
+                            <template v-slot:title>
+                                Slack Button
+                            </template>
+
+                            <template v-slot:component>
+                                <slack-button installUrl="#" button-name="Add to Slack"></slack-button>
+                                <hr>
+                                <slack-button installUrl="#" button-name="Sign in with Slack"></slack-button>
+                            </template>
 
 
-                            <demo-card :id="'tag_selector'">
-                                <template v-slot:title>
-                                    Tag Selector
-                                </template>
+                        </demo-card>
 
-                                <template v-slot:component>
-                                    <tag-selector v-model="selected_users" :objects="users"
-                                                  :state="false"></tag-selector>
-                                    <hr>
-                                    <tag-selector v-model="selected_users" :objects="users"
-                                                  :state="true"></tag-selector>
-                                </template>
 
-                                <template v-slot:model>
-                                    <pre>{{ selected_users | pretty }}</pre>
-                                </template>
-                            </demo-card>
-                        </b-container>
+                        <demo-card :id="'tag_selector'">
+                            <template v-slot:title>
+                                Tag Selector
+                            </template>
+
+                            <template v-slot:component>
+                                <tag-selector v-model="selected_users" :objects="users"
+                                              :state="false"></tag-selector>
+                                <hr>
+                                <tag-selector v-model="selected_users_2" :objects="users"
+                                              :state="true"></tag-selector>
+                            </template>
+
+                            <template v-slot:model>
+                                <pre>{{ selected_users | pretty }}</pre>
+
+                                <hr>
+                                <pre>{{ selected_users_2 | pretty }}</pre>
+                            </template>
+                        </demo-card>
+
                     </b-col>
 
                 </b-row>
@@ -251,6 +255,9 @@
                 selected_users: [
                     "2", "1"
                 ],
+                selected_users_2: [
+                    "3"
+                ],
                 users: [
                     {
                         value: '1',
@@ -319,6 +326,7 @@
 
     /* Underline From Center */
     .hvr-underline-from-center {
+        width: 80%;
         display: inline-block;
         vertical-align: middle;
         -webkit-transform: translateZ(0);
@@ -330,6 +338,7 @@
         position: relative;
         overflow: hidden;
     }
+
     .hvr-underline-from-center:before {
         content: "";
         position: absolute;
@@ -346,6 +355,7 @@
         -webkit-transition-timing-function: ease-out;
         transition-timing-function: ease-out;
     }
+
     .hvr-underline-from-center:hover:before, .hvr-underline-from-center:focus:before, .hvr-underline-from-center:active:before {
         left: 0;
         right: 0;
