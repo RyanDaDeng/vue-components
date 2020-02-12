@@ -12,7 +12,6 @@
                     </template>
                     <b-dropdown-form @submit.stop.prevent="() => {}">
                         <b-form-group
-                                label-for="tag-search-input"
                                 label="Search users"
                                 label-cols-md="auto"
                                 class="mb-0"
@@ -22,7 +21,6 @@
                         >
                             <b-form-input
                                     v-model="search"
-                                    id="tag-search-input"
                                     type="search"
                                     size="sm"
                                     autocomplete="off"
@@ -148,7 +146,6 @@
             }
         },
         created() {
-            console.log(this.value);
             if (this.value && this.value.length > 0) {
                 this.localValue = [...this.value];
             }

@@ -3,19 +3,42 @@
 
         <div>
             <!-- As a heading -->
-            <b-navbar variant="light" type="light" sticky>
-                <b-navbar-brand tag="h1" class="mb-0">Ryan's workspace</b-navbar-brand>
+            <b-navbar variant="light" type="light" sticky style="position: fixed;" class="mb-2">
+                <b-navbar-brand tag="h1" class="mb-0">Ryan's Workspace</b-navbar-brand>
+
+
+                <b-navbar-nav class="ml-auto">
+
+                       <span style="font-size: 2em; color: Dodgerblue;cursor:pointer;" class="mr-1">
+                                           <b-img width='32'
+                                                  style="margin-bottom:9px;"
+                                                  height="32"
+                                                  @click="openLink('https://slackit.io')"
+                                                  src="https://slackit.io/img/slackit-logo.png"></b-img></span>
+
+                    <span style="font-size: 2em; color: Dodgerblue;cursor:pointer;" class="mr-1"
+                          @click="openLink('https://github.com/RyanDaDeng')"><i
+                            class="fab fa-github"></i></span>
+
+                    <span style="font-size: 2em; color: Mediumslateblue;cursor:pointer;"
+                          @click="openLink('https://www.linkedin.com/in/ryandeng')"><i
+                            class="fab fa-linkedin"></i></span>
+
+                </b-navbar-nav>
+
             </b-navbar>
 
-            <b-col cols="2">
+
+            <b-col cols="2" class="mt-5">
                 <b-nav vertical class="w-25 float-left" style="position:fixed;">
-                    <b-nav-item @click="openLink(component.url)" :active="component.active"
+                    <b-nav-item class="hvr-underline-from-center" :href="!component.isLink ? component.url:'#'" @click="openLink(component.url)"
+                                :active="component.active"
                                 v-for="(component,key) in components" :key="key">
                         {{component.name}}
                     </b-nav-item>
                 </b-nav>
             </b-col>
-            <b-container class="mt-5">
+            <b-container style="margin-top: 80px;">
                 <b-row>
                     <b-col offset="2" cols="10">
                         <b-container>
@@ -25,8 +48,21 @@
                                 </template>
 
                                 <template v-slot:component>
-                                    <a href="https://github.com/RyanDaDeng" target="_blank">GitHub</a>.
-                                    <a href="https://www.linkedin.com/in/ryandeng/" target="_blank">Linkedin</a>.
+                                       <span style="font-size: 2em; color: Dodgerblue;cursor:pointer;" class="mr-1">
+                                           <b-img width='32'
+                                                  style="margin-bottom:9px;"
+                                                  height="32"
+                                                  @click="openLink('https://slackit.io')"
+                                                  src="https://slackit.io/img/slackit-logo.png"></b-img></span>
+
+                                    <span style="font-size: 2em; color: Dodgerblue;cursor:pointer;" class="mr-1"
+                                          @click="openLink('https://github.com/RyanDaDeng')"><i
+                                            class="fab fa-github"></i></span>
+
+                                    <span style="font-size: 2em; color: Mediumslateblue;cursor:pointer;"
+                                          @click="openLink('https://www.linkedin.com/in/ryandeng')"><i
+                                            class="fab fa-linkedin"></i></span>
+
                                 </template>
 
                             </demo-card>
@@ -118,7 +154,9 @@
         BNav,
         BNavItem,
         BNavbar,
-        BNavbarBrand
+        BNavbarBrand,
+        BNavbarNav,
+        BImg
 
     } from 'bootstrap-vue';
     import SlackButton from "./components/SlackButton";
@@ -133,7 +171,9 @@
         },
         methods: {
             openLink(url) {
-                 window.open(url, '_blank');
+                if (url.startsWith("http")) {
+                    window.open(url, '_blank');
+                }
             }
         },
         data() {
@@ -142,52 +182,69 @@
                     {
                         name: 'About Me',
                         active: true,
-                        url: '#about_me'
+                        url: '#about_me',
+                        isLink: false,
+                    },
+                    {
+                        name: 'Project - Slackit',
+                        active: true,
+                        url: 'https://slackit.io',
+                        isLink: true,
                     },
                     {
                         name: 'Vue - Recurrence Editor',
                         active: false,
-                        url: '#recurrence_editor'
+                        url: '#recurrence_editor',
+                        isLink: false,
                     },
                     {
                         name: 'Vue - Question Maker',
                         active: false,
-                        url: '#question_maker'
+                        url: '#question_maker',
+                        isLink: false,
                     },
                     {
                         name: 'Vue - Slack Button',
                         active: false,
-                        url: '#slack_button'
+                        url: '#slack_button',
+                        isLink: false,
                     },
                     {
                         name: 'Vue - Tag Selector',
                         active: false,
-                        url: '#tag_selector'
+                        url: '#tag_selector',
+                        isLink: false,
                     },
                     {
                         name: 'Laravel - Google reCAPTACHA v3',
                         active: false,
-                        url: 'https://github.com/RyanDaDeng/laravel-google-recaptcha-v3'
+                        url: 'https://github.com/RyanDaDeng/laravel-google-recaptcha-v3',
+                        isLink: true,
                     },
                     {
                         name: 'Laravel - Google reCAPTACHA v2',
                         active: false,
-                        url: 'https://github.com/RyanDaDeng/laravel-google-recaptcha-v2'
+                        url: 'https://github.com/RyanDaDeng/laravel-google-recaptcha-v2',
+                        isLink: true,
                     },
                     {
                         name: 'Laravel - DTO generator',
                         active: false,
-                        url: 'https://github.com/RyanDaDeng/laravel-dto-generator'
+                        url: 'https://github.com/RyanDaDeng/laravel-dto-generator',
+
+                        isLink: true,
                     },
                     {
                         name: 'Laravel - SucrePay SecureFrame',
                         active: false,
-                        url: 'https://github.com/RyanDaDeng/securepay-secureframe'
+                        url: 'https://github.com/RyanDaDeng/securepay-secureframe',
+                        isLink: true,
                     },
                     {
                         name: 'Laravel - Todo Management System',
                         active: false,
-                        url: 'https://github.com/RyanDaDeng/timehunter'
+                        url: 'https://github.com/RyanDaDeng/timehunter',
+                        isLink: true,
                     },
                 ],
                 recurrence: null,
@@ -245,7 +302,9 @@
             RecurrenceEditor,
             QuestionMaker,
             BNavbar,
-            BNavbarBrand
+            BNavbarBrand,
+            BNavbarNav,
+            BImg
         }
     }
 </script>
@@ -256,5 +315,39 @@
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         color: #2c3e50;
+    }
+
+    /* Underline From Center */
+    .hvr-underline-from-center {
+        display: inline-block;
+        vertical-align: middle;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        -moz-osx-font-smoothing: grayscale;
+        position: relative;
+        overflow: hidden;
+    }
+    .hvr-underline-from-center:before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        left: 50%;
+        right: 50%;
+        bottom: 0;
+        background: #2098d1;
+        height: 4px;
+        -webkit-transition-property: left, right;
+        transition-property: left, right;
+        -webkit-transition-duration: 0.3s;
+        transition-duration: 0.3s;
+        -webkit-transition-timing-function: ease-out;
+        transition-timing-function: ease-out;
+    }
+    .hvr-underline-from-center:hover:before, .hvr-underline-from-center:focus:before, .hvr-underline-from-center:active:before {
+        left: 0;
+        right: 0;
     }
 </style>
