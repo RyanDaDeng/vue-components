@@ -3,7 +3,7 @@
 
         <div>
             <!-- As a heading -->
-            <b-navbar variant="light" type="light" sticky style="position: fixed;">
+            <b-navbar variant="light" type="light" sticky>
                 <b-navbar-brand tag="h1" class="mb-0">Ryan's Workspace</b-navbar-brand>
 
 
@@ -29,26 +29,27 @@
             </b-navbar>
 
 
-            <b-col cols="2" class="mt-5">
-                <b-nav vertical class="w-25 float-left" style="position:fixed;">
-                    <b-nav-item class="hvr-underline-from-center" :href="!component.isLink ? component.url:'#'"
-                                @click="openLink(component.url)"
-                                :active="component.active"
-                                v-for="(component,key) in components" :key="key">
-                        {{component.name}}
-                    </b-nav-item>
-                </b-nav>
-            </b-col>
-            <b-container style="margin-top: 80px;">
-                <b-row>
-                    <b-col offset="2" cols="10">
+            <b-row>
 
-                        <demo-card :id="'about_me'">
-                            <template v-slot:title>
-                                About Me
-                            </template>
+                <b-col cols="2">
+                    <b-nav vertical class="w-25 float-left" style="position:fixed;">
+                        <b-nav-item class="hvr-underline-from-center" :href="!component.isLink ? component.url:'#'"
+                                    @click="openLink(component.url)"
+                                    :active="component.active"
+                                    v-for="(component,key) in components" :key="key">
+                            {{component.name}}
+                        </b-nav-item>
+                    </b-nav>
+                </b-col>
 
-                            <template v-slot:component>
+                <b-col offset="3" cols="8">
+
+                    <demo-card :id="'about_me'">
+                        <template v-slot:title>
+                            About Me
+                        </template>
+
+                        <template v-slot:component>
                                        <span style="font-size: 2em; color: Dodgerblue;cursor:pointer;" class="mr-1">
                                            <b-img width='32'
                                                   style="margin-bottom:9px;"
@@ -56,111 +57,117 @@
                                                   @click="openLink('https://slackit.io')"
                                                   src="https://slackit.io/img/slackit-logo.png"></b-img></span>
 
-                                <span style="font-size: 2em; color: Dodgerblue;cursor:pointer;" class="mr-1"
-                                      @click="openLink('https://github.com/RyanDaDeng')"><i
-                                        class="fab fa-github"></i></span>
+                            <span style="font-size: 2em; color: Dodgerblue;cursor:pointer;" class="mr-1"
+                                  @click="openLink('https://github.com/RyanDaDeng')"><i
+                                    class="fab fa-github"></i></span>
 
-                                <span style="font-size: 2em; color: Mediumslateblue;cursor:pointer;"
-                                      @click="openLink('https://www.linkedin.com/in/ryandeng')"><i
-                                        class="fab fa-linkedin"></i></span>
+                            <span style="font-size: 2em; color: Mediumslateblue;cursor:pointer;"
+                                  @click="openLink('https://www.linkedin.com/in/ryandeng')"><i
+                                    class="fab fa-linkedin"></i></span>
 
-                            </template>
+                        </template>
 
-                        </demo-card>
+                    </demo-card>
 
-                        <demo-card :id="'recurrence_editor'">
-                            <template v-slot:title>
-                                Recurrence Editor
-                            </template>
+                    <demo-card :id="'recurrence_editor'">
+                        <template v-slot:title>
+                            Recurrence Editor
+                        </template>
 
-                            <template v-slot:component>
-                                <recurrence-editor v-model="recurrence"></recurrence-editor>
-                            </template>
+                        <template v-slot:component>
+                            <recurrence-editor v-model="recurrence"></recurrence-editor>
+                        </template>
 
-                            <template v-slot:model>
-                                <pre>{{ recurrence | pretty }}</pre>
-                            </template>
+                        <template v-slot:model>
+                            <pre>{{ recurrence | pretty }}</pre>
+                        </template>
 
-                        </demo-card>
-
-
-                        <demo-card :id="'question_maker'">
-
-                            <template v-slot:title>
-                                Question Maker
-                            </template>
-
-                            <template v-slot:component>
-                                <question-maker :questions="questions" :limit="5"></question-maker>
-                            </template>
-
-                            <template v-slot:model>
-                                <pre>{{ questions | pretty }}</pre>
-                            </template>
-                        </demo-card>
+                    </demo-card>
 
 
-                        <demo-card :id="'slack_button'">
-                            <template v-slot:title>
-                                Slack Button
-                            </template>
+                    <demo-card :id="'question_maker'">
 
-                            <template v-slot:component>
-                                <slack-button installUrl="#" button-name="Add to Slack"></slack-button>
-                                <hr>
-                                <slack-button installUrl="#" button-name="Sign in with Slack"></slack-button>
-                            </template>
+                        <template v-slot:title>
+                            Question Maker
+                        </template>
 
+                        <template v-slot:component>
+                            <question-maker :questions="questions" :limit="5"></question-maker>
+                        </template>
 
-                        </demo-card>
-
-
-                        <demo-card :id="'tag_selector'">
-                            <template v-slot:title>
-                                Tag Selector
-                            </template>
-
-                            <template v-slot:component>
-                                <tag-selector v-model="selected_users" :objects="users"
-                                              :state="false"></tag-selector>
-                                <hr>
-                                <tag-selector v-model="selected_users_2" :objects="users"
-                                              :state="true"></tag-selector>
-                            </template>
-
-                            <template v-slot:model>
-                                <pre>{{ selected_users | pretty }}</pre>
-
-                                <hr>
-                                <pre>{{ selected_users_2 | pretty }}</pre>
-                            </template>
-                        </demo-card>
-
-                    </b-col>
-
-                </b-row>
+                        <template v-slot:model>
+                            <pre>{{ questions | pretty }}</pre>
+                        </template>
+                    </demo-card>
 
 
-            </b-container>
+                    <demo-card :id="'slack_button'">
+                        <template v-slot:title>
+                            Slack Button
+                        </template>
+
+                        <template v-slot:component>
+                            <slack-button installUrl="#" button-name="Add to Slack"></slack-button>
+                            <hr>
+                            <slack-button installUrl="#" button-name="Sign in with Slack"></slack-button>
+                        </template>
+
+
+                    </demo-card>
+
+
+                    <demo-card :id="'tag_selector'">
+                        <template v-slot:title>
+                            Tag Selector
+                        </template>
+
+                        <template v-slot:component>
+                            <tag-selector v-model="selected_users" :objects="users"
+                                          :state="false"></tag-selector>
+                            <hr>
+                            <tag-selector v-model="selected_users_2" :objects="users"
+                                          :state="true"></tag-selector>
+                        </template>
+
+                        <template v-slot:model>
+                            <pre>{{ selected_users | pretty }}</pre>
+
+                            <hr>
+                            <pre>{{ selected_users_2 | pretty }}</pre>
+                        </template>
+                    </demo-card>
+
+                </b-col>
+
+                <b-col cols="1">
+                </b-col>
+            </b-row>
+
+
         </div>
+
+        <footer id="sticky-footer" class="py-4 bg-light text-black-50">
+            <div class="container text-center">
+                <small>Copyright 2020 &copy; Ryan's Workspace is part of slackit.io</small>
+            </div>
+        </footer>
 
     </div>
 </template>
 
 <script>
     import RecurrenceEditor from './components/RecurrenceEditor.vue'
-    import {BContainer} from 'bootstrap-vue'
     import QuestionMaker from './components/QuestionMaker.vue'
     import DemoCard from './components/DemoCard.vue'
     import {
         BCol,
-        BRow,
         BNav,
         BNavItem,
         BNavbar,
         BNavbarBrand,
         BNavbarNav,
-        BImg
+        BImg,
+        BRow,
 
     } from 'bootstrap-vue';
     import SlackButton from "./components/SlackButton";
@@ -298,14 +305,13 @@
             }
         },
         components: {
+            BRow,
+            BCol,
             TagSelector,
             SlackButton,
-            BCol,
-            BRow,
             BNav,
             BNavItem,
             DemoCard,
-            BContainer,
             RecurrenceEditor,
             QuestionMaker,
             BNavbar,
@@ -317,6 +323,12 @@
 </script>
 
 <style>
+
+
+    #sticky-footer {
+        flex-shrink: none;
+    }
+
     #app {
         font-family: Avenir, Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;
