@@ -4,17 +4,19 @@
         <div>
             <!-- As a heading -->
             <b-navbar variant="light" type="light" sticky>
-                <b-navbar-brand tag="h1" class="mb-0">Ryan's Workspace</b-navbar-brand>
+                <b-navbar-brand tag="h1" class="mb-0">
+                      <span style="font-size: 1em; color: Dodgerblue;cursor:pointer;" class="mr-1">
+                                           <b-img width='30'
+                                                  style="margin-bottom:9px;"
+                                                  height="30"
+                                                  @click="openLink('https://slackit.io')"
+                                                  src="https://slackit.io/img/slackit-logo.png"></b-img></span>
+                    Slackit's Workspace</b-navbar-brand>
 
 
                 <b-navbar-nav class="ml-auto">
 
-                       <span style="font-size: 2em; color: Dodgerblue;cursor:pointer;" class="mr-1">
-                                           <b-img width='32'
-                                                  style="margin-bottom:9px;"
-                                                  height="32"
-                                                  @click="openLink('https://slackit.io')"
-                                                  src="https://slackit.io/img/slackit-logo.png"></b-img></span>
+
 
                     <span style="font-size: 2em; color: Dodgerblue;cursor:pointer;" class="mr-1"
                           @click="openLink('https://github.com/RyanDaDeng')"><i
@@ -44,9 +46,9 @@
 
                 <b-col offset="3" cols="8">
 
-                    <demo-card :id="'about_me'">
+                    <demo-card :id="'about_author'">
                         <template v-slot:title>
-                            About Me
+                            About Author
                         </template>
 
                         <template v-slot:component>
@@ -358,9 +360,9 @@
                 },
                 components: [
                     {
-                        name: 'About Me',
+                        name: 'About Author',
                         active: true,
-                        url: '#about_me',
+                        url: '#about_author',
                         isLink: false,
                     },
                     {
