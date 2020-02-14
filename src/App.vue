@@ -137,6 +137,48 @@
                         </template>
                     </demo-card>
 
+
+                    <demo-card :id="'rating_bar'">
+                        <template v-slot:title>
+                            Image Styled Rating Bar
+                        </template>
+
+                        <template v-slot:component>
+                            <rating-bar v-model.number="rating.half_rating"></rating-bar>
+                            <p>Your rating is {{ rating.half_rating }}</p>
+
+
+                            <rating-bar v-model.number="rating.full_rating" :half="false"></rating-bar>
+                            <p>Your rating is {{ rating.full_rating }}</p>
+                        </template>
+
+                        <template v-slot:model>
+                            {{ rating|pretty }}
+
+                        </template>
+                    </demo-card>
+
+
+                    <demo-card :id="'css_rating_bar'">
+                        <template v-slot:title>
+                            Purely CSS Styled Rating Bar
+                        </template>
+
+                        <template v-slot:component>
+                            <css-rating-bar v-model.number="cssRating.half_rating" :max-stars="5"></css-rating-bar>
+
+
+                            <div>
+                                <p>Your rating is {{ cssRating.half_rating }}</p>
+                            </div>
+
+                        </template>
+
+                        <template v-slot:model>
+                            {{ cssRating|pretty }}
+                        </template>
+                    </demo-card>
+
                 </b-col>
 
                 <b-col cols="1">
@@ -172,6 +214,8 @@
     } from 'bootstrap-vue';
     import SlackButton from "./components/SlackButton";
     import TagSelector from "./components/TagSelector";
+    import RatingBar from "./components/RatingBar/RatingBar";
+    import CssRatingBar from "./components/CssRatingBar/CssRatingBar";
 
     export default {
         name: 'App',
@@ -189,6 +233,14 @@
         },
         data() {
             return {
+                cssRating: {
+                    half_rating: 1.5,
+                    full_rating: 2
+                },
+                rating: {
+                    half_rating: 1.5,
+                    full_rating: 2
+                },
                 components: [
                     {
                         name: 'About Me',
@@ -224,6 +276,18 @@
                         name: 'Vue - Tag Selector',
                         active: false,
                         url: '#tag_selector',
+                        isLink: false,
+                    },
+                    {
+                        name: 'Vue - Image Styled Rating Bar',
+                        active: false,
+                        url: '#rating_bar',
+                        isLink: false,
+                    },
+                    {
+                        name: 'Vue - Purely CSS Styled Rating Bar',
+                        active: false,
+                        url: '#css_rating_bar',
                         isLink: false,
                     },
                     {
@@ -305,6 +369,8 @@
             }
         },
         components: {
+            CssRatingBar,
+            RatingBar,
             BRow,
             BCol,
             TagSelector,
