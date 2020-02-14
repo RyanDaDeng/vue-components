@@ -439,7 +439,7 @@
                         isLink: true,
                     },
                     {
-                        name: 'Laravel - SucrePay SecureFrame',
+                        name: 'Laravel - SecurePay SecureFrame',
                         active: false,
                         url: 'https://github.com/RyanDaDeng/securepay-secureframe',
                         isLink: true,
