@@ -297,7 +297,11 @@
 
         <footer id="sticky-footer" class="py-4 bg-light text-black-50">
             <div class="container text-center">
-                <small>Copyright 2020 &copy; Ryan's Workspace is part of slackit.io</small>
+                <small>Copyright 2020 &copy;   <span style="font-size: 1em; color: Dodgerblue;cursor:pointer;" >
+                                           <b-img width='24'
+                                                  height="24"
+                                                  @click="openLink('https://slackit.io')"
+                                                  src="https://slackit.io/img/slackit-logo.png"></b-img></span> Slackit's Workspace is part of slackit.io</small>
             </div>
         </footer>
 
