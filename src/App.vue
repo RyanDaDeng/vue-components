@@ -67,6 +67,9 @@
 
                         </template>
 
+                        <template v-slot:model>
+                            <pre>{{ profile | pretty }}</pre>
+                        </template>
                     </demo-card>
 
                     <demo-card :id="'recurrence_editor'">
@@ -100,6 +103,90 @@
                         </template>
                     </demo-card>
 
+
+                    <demo-card :id="'social_button'">
+                        <template v-slot:title>
+                            Social Button
+                        </template>
+
+                        <template v-slot:component>
+
+                            <social-button installUrl="#" button-name="Add to Slack">
+                                <template v-slot:img>
+                                    <img src="https://geekbot.com/landing/slack-logo.svg" alt="slack logo" class="mr-3"
+                                         width="30px"
+                                         height="30px">
+                                </template>
+                            </social-button>
+                            <hr>
+                            <social-button installUrl="#" button-name="Sign in with Slack">
+                                <template v-slot:img>
+                                    <img src="https://geekbot.com/landing/slack-logo.svg" alt="slack logo" class="mr-3"
+                                         width="30px"
+                                         height="30px">
+                                </template>
+                            </social-button>
+
+                            <hr>
+                            <social-button installUrl="#" button-name="Sign in with Google">
+                                <template v-slot:img>
+                                    <img src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png"
+                                         alt="slack logo" class="mr-3"
+                                         width="30px"
+                                         height="30px">
+                                </template>
+                            </social-button>
+                            <hr>
+                            <social-button installUrl="#" button-name="Sign in with Facebook">
+                                <template v-slot:img>
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png"
+                                         alt="slack logo" class="mr-3"
+                                         width="30px"
+                                         height="30px">
+                                </template>
+                            </social-button>
+
+                            <hr>
+
+                            <social-button installUrl="#" button-name="Sign in with Slackit">
+                                <template v-slot:img>
+                                    <img src="https://slackit.io/img/slackit-logo.png"
+                                         alt="slack logo" class="mr-3"
+                                         width="30px"
+                                         height="30px">
+                                </template>
+                            </social-button>
+
+                            <hr>
+
+                            <social-button installUrl="#" button-name="Sign in with Github">
+                                <template v-slot:img>
+
+                                    <img src="https://github.githubassets.com/images/modules/logos_page/Octocat.png"
+                                         alt="slack logo" class="mr-3"
+                                         width="30px"
+                                         height="30px">
+
+
+                                </template>
+                            </social-button>
+
+
+                            <hr>
+
+
+                            <social-button installUrl="#" button-name="Sign in with Linkedin">
+                                <template v-slot:img>
+
+                                    <img src=" https://pngimg.com/uploads/linkedIn/linkedIn_PNG38.png"
+                                         alt="slack logo" class="mr-3"
+                                         width="30px"
+                                         height="30px">
+                                </template>
+                            </social-button>
+                        </template>
+
+                    </demo-card>
 
                     <demo-card :id="'slack_button'">
                         <template v-slot:title>
@@ -153,7 +240,7 @@
                         </template>
 
                         <template v-slot:model>
-                            {{ rating|pretty }}
+                            <pre> {{ rating|pretty }}</pre>
 
                         </template>
                     </demo-card>
@@ -175,10 +262,28 @@
                         </template>
 
                         <template v-slot:model>
-                            {{ cssRating|pretty }}
+                            <pre>{{ cssRating|pretty }}</pre>
                         </template>
                     </demo-card>
 
+
+                    <demo-card :id="'topic_card'">
+                        <template v-slot:title>
+                            Topic Card
+                        </template>
+
+                        <template v-slot:component>
+
+
+                            <topic-card v-model="topicItems"></topic-card>
+
+                        </template>
+
+                        <template v-slot:model>
+                            <pre>  {{ topicItems|pretty }}</pre>
+
+                        </template>
+                    </demo-card>
                 </b-col>
 
                 <b-col cols="1">
@@ -216,6 +321,8 @@
     import TagSelector from "./components/TagSelector";
     import RatingBar from "./components/RatingBar/RatingBar";
     import CssRatingBar from "./components/CssRatingBar/CssRatingBar";
+    import TopicCard from "./components/TopicCard/TopicCard";
+    import SocialButton from "./components/SocialButton/SocialButton";
 
     export default {
         name: 'App',
@@ -233,9 +340,17 @@
         },
         data() {
             return {
+                profile: {
+                    nickname: 'Ryan',
+                    full_name: 'Da Deng',
+                    linkedIn: 'https://www.linkedin.com/in/ryandeng/',
+                    github: 'https://github.com/RyanDaDeng',
+                    location: 'Sydney/AU',
+                    website: 'https://ryandeng.com'
+
+                },
                 cssRating: {
-                    half_rating: 1.5,
-                    full_rating: 2
+                    half_rating: 1.5
                 },
                 rating: {
                     half_rating: 1.5,
@@ -267,6 +382,12 @@
                         isLink: false,
                     },
                     {
+                        name: 'Vue - Social Button',
+                        active: false,
+                        url: '#social_button',
+                        isLink: false,
+                    },
+                    {
                         name: 'Vue - Slack Button',
                         active: false,
                         url: '#slack_button',
@@ -288,6 +409,12 @@
                         name: 'Vue - Purely CSS Styled Rating Bar',
                         active: false,
                         url: '#css_rating_bar',
+                        isLink: false,
+                    },
+                    {
+                        name: 'Vue - Topic Card',
+                        active: false,
+                        url: '#topic_card',
                         isLink: false,
                     },
                     {
@@ -365,10 +492,54 @@
                         sort: 2,
                         subject: 'What will you do today?'
                     },
+                ],
+                topicItems: [
+                    {
+                        id: '1',
+                        title: 'please help me sss',
+                        latest_reply_by: 'ryan',
+                        author: 'peter',
+                        app_name: '',
+                        app_image: 'https://slackit.io/img/lost-and-found.png',
+                        total_comments: 11,
+                        submitted_time: '6 mins ago'
+                    },
+                    {
+                        id: '2',
+                        title: 'please help me sss',
+                        latest_reply_by: 'ryan',
+                        author: 'peter',
+                        app_name: '',
+                        app_image: 'https://slackit.io/img/read-me.png',
+                        total_comments: 11,
+                        submitted_time: '6 mins ago'
+                    },
+                    {
+                        id: '3',
+                        title: 'please help me sss',
+                        latest_reply_by: 'ryan',
+                        author: 'peter',
+                        app_name: '',
+                        app_image: 'https://slackit.io/img/event-maker.png',
+                        total_comments: 11,
+                        submitted_time: '6 mins ago'
+                    },
+                    {
+                        id: '4',
+                        title: 'please help me sss',
+                        latest_reply_by: 'ryan',
+                        author: 'peter',
+                        app_name: '',
+                        app_image: 'https://slackit.io/img/team-builder.png',
+                        total_comments: 11,
+                        submitted_time: '6 mins ago'
+                    },
                 ]
             }
         },
         components: {
+            SocialButton,
+            TopicCard,
             CssRatingBar,
             RatingBar,
             BRow,
