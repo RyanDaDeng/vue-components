@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div @click="update" :style="ratingBgStyle" @mousemove="onMousemove" @mouseout="reset()"
+        <div @click="update" :style="ratingBgStyle" @mousemove="onMousemove" @mouseleave="reset()"
              :class="{ active: hover }">
             <div :style="ratingBarStyle"></div>
         </div>
@@ -10,6 +10,10 @@
 <script>
     export default {
         props: {
+            value: {
+                type: Number,
+                default: 0.5,
+            },
             half: {
                 type: Boolean,
                 default: true,
